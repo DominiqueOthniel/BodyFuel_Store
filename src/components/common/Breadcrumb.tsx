@@ -32,7 +32,7 @@ const Breadcrumb = ({ items, className = '' }: BreadcrumbProps) => {
     }
 
     const breadcrumbs: BreadcrumbItem[] = [
-      { label: 'Accueil', href: '/product-catalog' }
+      { label: 'Accueil', href: '/' }
     ];
 
     if (pathname === '/product-catalog') {

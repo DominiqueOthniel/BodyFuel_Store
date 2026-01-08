@@ -48,7 +48,7 @@ const FlavorSelectionModal = ({ isOpen, onClose, product, onConfirm }: FlavorSel
     onClose();
   };
 
-  const selectedSizeData = product.sizes.find(s => s.weight === selectedSize);
+  const selectedSizeData = product.sizes?.find(s => s.weight === selectedSize);
   const totalPrice = selectedSizeData ? selectedSizeData.price * quantity : product.price * quantity;
 
   return (
@@ -75,6 +75,8 @@ const FlavorSelectionModal = ({ isOpen, onClose, product, onConfirm }: FlavorSel
             <button
               onClick={handleClose}
               className="p-2 hover:bg-muted rounded-lg transition-smooth"
+              aria-label="Fermer"
+              title="Fermer"
             >
               <Icon name="XMarkIcon" size={24} />
             </button>
@@ -137,7 +139,7 @@ const FlavorSelectionModal = ({ isOpen, onClose, product, onConfirm }: FlavorSel
                 Taille <span className="text-error">*</span>
               </label>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                {product.sizes.map((size) => (
+                {(product.sizes || []).map((size) => (
                   <button
                     key={size.weight}
                     onClick={() => size.available && setSelectedSize(size.weight)}
@@ -173,6 +175,8 @@ const FlavorSelectionModal = ({ isOpen, onClose, product, onConfirm }: FlavorSel
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
                   className="w-10 h-10 flex items-center justify-center bg-muted hover:bg-muted/80 rounded-lg transition-smooth"
+                  aria-label="Diminuer la quantité"
+                  title="Diminuer la quantité"
                 >
                   <Icon name="MinusIcon" size={20} />
                 </button>
@@ -182,6 +186,8 @@ const FlavorSelectionModal = ({ isOpen, onClose, product, onConfirm }: FlavorSel
                 <button
                   onClick={() => setQuantity(Math.min(10, quantity + 1))}
                   className="w-10 h-10 flex items-center justify-center bg-muted hover:bg-muted/80 rounded-lg transition-smooth"
+                  aria-label="Augmenter la quantité"
+                  title="Augmenter la quantité"
                 >
                   <Icon name="PlusIcon" size={20} />
                 </button>

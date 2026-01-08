@@ -497,7 +497,16 @@ const ProductCatalogInteractive = () => {
       <FlavorSelectionModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        product={selectedProduct}
+        product={selectedProduct ? {
+          id: selectedProduct.id,
+          name: selectedProduct.name,
+          brand: selectedProduct.brand,
+          price: selectedProduct.price,
+          image: selectedProduct.image,
+          alt: selectedProduct.alt,
+          flavors: selectedProduct.flavorOptions || [],
+          sizes: selectedProduct.sizeOptions || []
+        } : null}
         onConfirm={handleConfirmAddToCart} />
 
     </div>);
